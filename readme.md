@@ -9,6 +9,7 @@ This is a simple DNS server implemented in Go that uses a Trie data structure to
 - Command to print all current domain-IP mappings in the Trie.
 
 ## Project Structure:
+```
 dns-server/
 │
 ├── cmd/
@@ -27,7 +28,7 @@ dns-server/
 │
 ├── go.mod
 └── go.sum
-
+```
 
 ## Getting Started
 
