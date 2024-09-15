@@ -27,12 +27,14 @@ func handleRequest(trie *trie.Trie) func(w dns.ResponseWriter, r *dns.Msg) {
 		for _, q := range r.Question {
 			fmt.Println("Inside Check: ", q)
 			if ip, found := trie.Search(q.Name); found {
+				fmt.Println("IP Found: ", ip)
 				rr := &dns.A{
 					Hdr: dns.RR_Header{Name: q.Name, Rrtype: dns.TypeA, Class: dns.ClassINET, Ttl: 3600},
 					A:   ip,
 				}
 				m.Answer = append(m.Answer, rr)
 			} else {
+				fmt.Println("IP Not Found: ", ip)
 				upstream := "8.8.8.8:53"
 				resp, err := forwardQuery(r, upstream)
 				if err != nil {
